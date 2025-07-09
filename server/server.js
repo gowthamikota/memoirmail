@@ -14,6 +14,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+
+
 // Serve static files from the uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -27,7 +30,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/time-caps
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
+// After auth route
 app.use('/api/capsules', require('./routes/capsules'));
+
+
 
 // Serve static assets in production
 if (process.env.NODE_ENV === 'production') {

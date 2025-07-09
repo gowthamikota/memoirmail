@@ -13,7 +13,9 @@ const TimeCapsuleSchema = new mongoose.Schema({
   message: {
     type: String,
     required: true
-  },
+  }
+,
+
   media: [{
     type: String // URLs to stored media files
   }],
